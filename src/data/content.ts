@@ -206,7 +206,7 @@ export const stats: Stat[] = [
 
 export const navLinks = [
   { label: 'Home', href: '#home' },
-  { label: 'Projects', href: '#properties' },
+  { label: 'Properties', href: '#properties' },
   { label: 'About Us', href: '#about' },
   { label: 'Services', href: '#services' },
   { label: 'Contact Us', href: '#contact' },
