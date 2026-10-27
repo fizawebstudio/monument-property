@@ -1,0 +1,227 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-charcoal: #171717;
+    --color-ivory: #f5f2ec;
+    --color-gold: #b59a6a;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* native smooth scroll — JS handles parallax only */
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-charcoal-900 font-sans antialiased;
+    color: #F5F2EC;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: rgba(181,154,106,0.28);
+    color: #fdfcf9;
+  }
+
+  /* Headings use Manrope */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Manrope', system-ui, sans-serif;
+    line-height: 1.15;
+  }
+
+  /* Body / UI text use Manrope */
+  p, li, a, button, input, select, textarea, label, span, td, th {
+    font-family: 'Manrope', system-ui, sans-serif;
+  }
+}
+
+@layer components {
+  .container-lux {
+    @apply mx-auto w-full max-w-[1400px] px-6 sm:px-8 lg:px-12;
+  }
+
+  /* Eyebrow: DM Sans, uppercase, small, gold */
+  .eyebrow {
+    font-family: 'Manrope', system-ui, sans-serif;
+    @apply text-[11px] font-medium uppercase text-gold-500;
+    letter-spacing: 0.3em;
+  }
+
+  .heading-xl {
+    font-family: 'Manrope', system-ui, sans-serif;
+    @apply text-4xl leading-[1.1] sm:text-5xl lg:text-6xl xl:text-7xl;
+  }
+
+  .heading-lg {
+    font-family: 'Manrope', system-ui, sans-serif;
+    @apply text-3xl leading-[1.15] sm:text-4xl lg:text-5xl xl:text-[3.25rem];
+  }
+
+  .heading-md {
+    font-family: 'Manrope', system-ui, sans-serif;
+    @apply text-2xl leading-tight sm:text-3xl lg:text-4xl;
+  }
+
+  /* Subtitle / body copy style */
+  .subtitle {
+    font-family: 'Manrope', system-ui, sans-serif;
+    @apply text-[15px] leading-[1.75] text-ivory-200/55;
+    letter-spacing: 0.01em;
+  }
+
+  /* ── Buttons ── */
+  .btn-primary {
+    font-family: 'Manrope', system-ui, sans-serif;
+    @apply relative inline-flex items-center justify-center gap-2 overflow-hidden bg-ivory-200 px-8 py-4 text-sm font-medium uppercase text-charcoal-900 transition-all duration-500 ease-luxury;
+    letter-spacing: 0.18em;
+  }
+  .btn-primary::before {
+    content: '';
+    @apply absolute inset-y-0 left-0 w-full origin-left scale-x-0 bg-gold-500 transition-transform duration-500 ease-luxury;
+  }
+  .btn-primary:hover::before { @apply scale-x-100; }
+  .btn-primary > * { @apply relative z-10 transition-colors duration-500; }
+  .btn-primary:hover > * { @apply text-charcoal-900; }
+  .btn-primary svg, .btn-outline svg, .btn-gold svg {
+    @apply transition-transform duration-500 ease-luxury;
+  }
+  .btn-primary:hover svg, .btn-outline:hover svg, .btn-gold:hover svg {
+    @apply translate-x-1;
+  }
+
+  .btn-outline {
+    font-family: 'Manrope', system-ui, sans-serif;
+    @apply relative inline-flex items-center justify-center gap-2 overflow-hidden border-2 border-ivory-200/30 px-8 py-4 text-sm font-medium uppercase text-ivory-200 transition-all duration-500 ease-luxury;
+    letter-spacing: 0.18em;
+  }
+  .btn-outline::before {
+    content: '';
+    @apply absolute inset-y-0 left-0 w-full origin-left scale-x-0 bg-ivory-200 transition-transform duration-500 ease-luxury;
+  }
+  .btn-outline:hover::before { @apply scale-x-100; }
+  .btn-outline > * { @apply relative z-10 transition-colors duration-500; }
+  .btn-outline:hover > * { @apply text-charcoal-900; }
+
+  .btn-gold {
+    font-family: 'Manrope', system-ui, sans-serif;
+    @apply relative inline-flex items-center justify-center gap-2 overflow-hidden border-2 border-gold-500/40 px-8 py-4 text-sm font-medium uppercase text-gold-500 transition-all duration-500 ease-luxury;
+    letter-spacing: 0.18em;
+  }
+  .btn-gold::before {
+    content: '';
+    @apply absolute inset-y-0 left-0 w-full origin-left scale-x-0 bg-gold-500 transition-transform duration-500 ease-luxury;
+  }
+  .btn-gold:hover::before { @apply scale-x-100; }
+  .btn-gold > * { @apply relative z-10 transition-colors duration-500; }
+  .btn-gold:hover > * { @apply text-charcoal-900; }
+
+  /* ── Form ── */
+  .input-lux {
+    font-family: 'Manrope', system-ui, sans-serif;
+    @apply w-full border-b border-ivory-200/20 bg-transparent py-4 text-sm tracking-wide text-ivory-100 placeholder:text-ivory-200/35 transition-colors duration-500 focus:border-gold-500 focus:outline-none;
+  }
+
+  .label-lux {
+    font-family: 'Manrope', system-ui, sans-serif;
+    @apply mb-2 block text-[11px] font-medium uppercase text-ivory-200/45;
+    letter-spacing: 0.22em;
+  }
+
+  /* ── Link underline ── */
+  .link-underline {
+    @apply relative inline-block transition-colors duration-300;
+  }
+  .link-underline::after {
+    content: '';
+    @apply absolute bottom-0 left-0 h-px w-0 bg-gold-500 transition-all duration-500 ease-luxury;
+  }
+  .link-underline:hover::after { @apply w-full; }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+
+  /* ── Scroll reveal classes ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(36px);
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+  .reveal-scale {
+    opacity: 0;
+    transform: scale(1.07);
+    transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal-scale.is-visible { opacity: 1; transform: scale(1); }
+
+  .reveal-left {
+    opacity: 0;
+    transform: translateX(-36px);
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal-left.is-visible { opacity: 1; transform: translateX(0); }
+
+  .reveal-right {
+    opacity: 0;
+    transform: translateX(36px);
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal-right.is-visible { opacity: 1; transform: translateX(0); }
+
+  .stagger > * {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .stagger.is-visible > * { opacity: 1; transform: translateY(0); }
+  .stagger.is-visible > *:nth-child(1) { transition-delay: 0ms; }
+  .stagger.is-visible > *:nth-child(2) { transition-delay: 120ms; }
+  .stagger.is-visible > *:nth-child(3) { transition-delay: 240ms; }
+  .stagger.is-visible > *:nth-child(4) { transition-delay: 360ms; }
+  .stagger.is-visible > *:nth-child(5) { transition-delay: 480ms; }
+  .stagger.is-visible > *:nth-child(6) { transition-delay: 600ms; }
+
+  .clip-reveal {
+    clip-path: inset(0 0 100% 0);
+    transition: clip-path 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .clip-reveal.is-visible { clip-path: inset(0 0 0% 0); }
+
+  .gold-line { @apply block h-px w-10 bg-gold-500; }
+
+  /* GPU hint for parallax elements */
+  .will-change-transform { will-change: transform; }
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal, .reveal-scale, .reveal-left, .reveal-right,
+  .clip-reveal, .stagger > * {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+  }
+}
+
+/* ── Custom scrollbar ── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #0d0d0d; }
+::-webkit-scrollbar-thumb { background: #404040; }
+::-webkit-scrollbar-thumb:hover { background: #B59A6A; }
